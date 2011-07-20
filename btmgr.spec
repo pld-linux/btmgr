@@ -1,3 +1,5 @@
+# TODO
+# - x86_64 is broken, use ix86 version
 #
 # Conditional build:
 %bcond_without	doc		# build documentation
@@ -5,7 +7,7 @@
 Summary:	Smart Boot Manager is an OS independent boot manager
 Name:		btmgr
 Version:	3.7
-Release:	0.1
+Release:	0.2
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/btmgr/%{name}-%{version}-1.tar.gz
@@ -66,7 +68,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog CREDITS INSTALL README TODO
 %doc %lang(zh) README-ZH
 %attr(755,root,root) %{_sbindir}/sbminst
-%{_datadir}/btmgr
+%{_datadir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
