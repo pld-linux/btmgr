@@ -1,0 +1,14 @@
+http://sourceforge.net/mailarchive/message.php?msg_id=7380111
+
+--- btmgr-3.7-1/./manager/helptool.h~	2000-09-02 18:21:51.000000000 +0300
++++ btmgr-3.7-1/./manager/helptool.h	2011-07-20 14:09:24.750719959 +0300
+@@ -623,7 +623,8 @@
+ 
+ %macro endblock 0-1
+ 	%ifctx orblock
+-		cat_jmp %$ifnot,__level__
++;       cat_jmp %$ifnot,__level__    ; as it was
++        jmp %$$ifnot       ; this does - 0.98 or 0.98.35
+ 		%$iftrue:
+ 	%elifctx andblock
+ 	%else

@@ -10,6 +10,7 @@ License:	GPL v2
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/btmgr/%{name}-%{version}-1.tar.gz
 # Source0-md5:	7bfe432821c3cef48df8b3d6be800009
+Patch0:		nasm.patch
 URL:		http://sourceforge.net/projects/btmgr/
 BuildRequires:	nasm
 BuildRequires:	sed >= 4.0
@@ -30,6 +31,7 @@ CD-ROM. There are plans to support ZIP and LS-120 in the near future.
 
 %prep
 %setup -q -n %{name}-%{version}-1
+%patch0 -p1
 
 # allow passing defaults
 %{__sed} -i -e '/^CC=/ s/gcc/$(HOSTCC)/' Makefile
