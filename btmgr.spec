@@ -14,6 +14,7 @@ Patch0:		nasm.patch
 URL:		http://sourceforge.net/projects/btmgr/
 BuildRequires:	nasm
 BuildRequires:	sed >= 4.0
+BuildRequires:	ucl-devel
 %if %{with doc}
 BuildRequires:	sgml-tools
 BuildRequires:	tetex-format-latex
