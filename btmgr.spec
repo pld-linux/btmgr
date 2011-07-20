@@ -19,6 +19,8 @@ BuildRequires:	ucl-devel
 %if %{with doc}
 BuildRequires:	sgml-tools
 BuildRequires:	tetex-format-latex
+BuildRequires:	tetex-metafont
+BuildRequires:	tetex-tex-babel
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
