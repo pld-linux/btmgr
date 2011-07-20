@@ -13,7 +13,10 @@ Source0:	http://downloads.sourceforge.net/btmgr/%{name}-%{version}-1.tar.gz
 URL:		http://sourceforge.net/projects/btmgr/
 BuildRequires:	nasm
 BuildRequires:	sed >= 4.0
-%{?with_doc:BuildRequires:	sgml-tools}
+%if %{with doc}
+BuildRequires:	sgml-tools
+BuildRequires:	tetex-format-latex
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -28,11 +31,21 @@ CD-ROM. There are plans to support ZIP and LS-120 in the near future.
 %prep
 %setup -q -n %{name}-%{version}-1
 
-%{__sed} -i -e '/^CC=/ s/gcc/%{__cc}/' Makefile
+# allow passing defaults
+%{__sed} -i -e '/^CC=/ s/gcc/$(HOSTCC)/' Makefile
+%{__sed} -i -e '/^COMMON_FLAGS=/ s/-g/$(CFLAGS)/' Makefile
+%{__sed} -i -e '/^ASM=/ s/$/ $(AFLAGS)/' Makefile
+
+# we run docs in bcond
 %{__sed} -i -e '/^SUBDIRS=/ s/docs//' Makefile
+# pipe breaks error handling
+%{__sed} -i -e '/(MAKE)/ s/|tee -a errors.log//' Makefile
 
 %build
-%{__make}
+%{__make} \
+	HOSTCC="%{__cc}" \
+	CFLAGS="%{rpmcflags}" \
+	AFLAGS="-w-orphan-labels"
 
 %{?with_doc:%{__make} -C docs}
 
