@@ -1,0 +1,10 @@
+--- btmgr-3.7-1/installer/sbminst.c~	2001-02-09 19:10:32.000000000 +0200
++++ btmgr-3.7-1/installer/sbminst.c	2011-07-20 14:18:51.287241542 +0300
+@@ -30,6 +30,7 @@
+ #include <linux/fs.h>
+ #include <linux/hdreg.h>
+ #include <linux/fd.h>
++#include <linux/kdev_t.h>
+ #include <sys/stat.h>
+ #include <sys/types.h>
+ #include <fcntl.h>

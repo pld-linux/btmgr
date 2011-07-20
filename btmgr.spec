@@ -11,6 +11,7 @@ Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/btmgr/%{name}-%{version}-1.tar.gz
 # Source0-md5:	7bfe432821c3cef48df8b3d6be800009
 Patch0:		nasm.patch
+Patch1:		major-macro.patch
 URL:		http://sourceforge.net/projects/btmgr/
 BuildRequires:	nasm
 BuildRequires:	sed >= 4.0
@@ -33,6 +34,7 @@ CD-ROM. There are plans to support ZIP and LS-120 in the near future.
 %prep
 %setup -q -n %{name}-%{version}-1
 %patch0 -p1
+%patch1 -p1
 
 # allow passing defaults
 %{__sed} -i -e '/^CC=/ s/gcc/$(HOSTCC)/' Makefile
@@ -60,7 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog CREDITS INSTALL README TODO
-%doc(zh) README-ZH
+%doc %lang(zh) README-ZH
 %attr(755,root,root) %{_sbindir}/sbminst
 %{_datadir}/btmgr
 
